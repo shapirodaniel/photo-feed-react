@@ -1,48 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feed.css';
-
-function Post({ showId }) {
-	const [comments, setComments] = useState([]);
-
-	useEffect(() => {
-		const getComments = async () => {
-			const { data: comments } = await axios.get(
-				'http://localhost:8080/comments'
-			);
-			if (showId) {
-				setComments(comments);
-			}
-		};
-
-		getComments();
-	}, [showId]);
-
-	if (!showId) return null;
-
-	const { imgComments } = comments.find(c => c.commentId === showId) || {
-		commentId: 0,
-		imgComments: [],
-	};
-
-	return (
-		<div>
-			{imgComments.map(({ id, name, comment }) => (
-				<div
-					key={id}
-					style={{
-						width: '100%',
-						fontSize: '14px',
-						display: 'flex',
-						'justify-content': 'space-between',
-					}}
-				>
-					<span style={{ fontWeight: 'bold' }}>{name}:</span> {comment}
-				</div>
-			))}
-		</div>
-	);
-}
+import Post from './Post';
 
 function Feed() {
 	const [posts, setPosts] = useState([]);
@@ -57,7 +16,7 @@ function Feed() {
 				ht[val] = false;
 				return ht;
 			}, {});
-			setVisiblePosts({ ...idObj });
+			setVisiblePosts(idObj);
 		};
 
 		getPosts();
@@ -74,6 +33,17 @@ function Feed() {
 					<img src={src} alt='nature-and-water' />
 					<div>{content}</div>
 					<button
+						style={{
+							height: '40px',
+							width: '200px',
+							border: 'transparent',
+							borderRadius: '30px',
+							backgroundColor: '#700070',
+							color: 'white',
+							fontSize: '16px',
+							fontWeight: 'bold',
+							cursor: 'pointer',
+						}}
 						onClick={() => {
 							if (visiblePosts[postId]) {
 								const clonedPosts = { ...visiblePosts };
