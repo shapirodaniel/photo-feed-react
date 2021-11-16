@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feed.css';
 import Post from './Post';
+import Likes from './Likes';
 
 function Feed() {
 	const [posts, setPosts] = useState([]);
@@ -24,13 +25,14 @@ function Feed() {
 
 	return (
 		<section>
-			{posts.map(({ postId, date, author, src, content }) => (
+			{posts.map(({ postId, date, author, src, content, likes }) => (
 				<div key={postId} className='container'>
 					<div className='author-and-date'>
 						<span>{date}</span>
 						<span>posted by: {author}</span>
 					</div>
 					<img src={src} alt='nature-and-water' />
+					<Likes likes={likes} />
 					<div>{content}</div>
 					<button
 						style={{
