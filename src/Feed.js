@@ -38,7 +38,7 @@ function Feed() {
 					<div className='author-and-date'>
 						<span>{date}</span>
 						<span>|</span>
-						<span class='author'>{author}</span>
+						<span className='author'>{author}</span>
 					</div>
 					<img src={src} alt='nature-and-water' />
 					<Likes likes={likes} />

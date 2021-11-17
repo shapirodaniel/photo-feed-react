@@ -8,11 +8,11 @@ export default function Post({ postId }) {
 	useEffect(() => {
 		const getComments = async () => {
 			try {
-				const { data: comments } = await axios.get(
-					'http://localhost:8080/comments'
-				);
 				if (postId) {
-					setComments(comments);
+					const { data } = await axios.get(
+						`http://localhost:8080/comments?commentId=${postId}`
+					);
+					setComments(data[0].imgComments);
 				}
 			} catch (ex) {
 				console.error(ex);
@@ -24,14 +24,9 @@ export default function Post({ postId }) {
 
 	if (!postId) return null;
 
-	const { imgComments } = comments.find(c => c.commentId === postId) || {
-		commentId: 0,
-		imgComments: [],
-	};
-
 	return (
 		<div style={{ width: '100%', lineHeight: '1.2em' }}>
-			{imgComments.map(({ id, name, comment }) => (
+			{comments.map(({ id, name, comment }) => (
 				<div
 					key={id}
 					style={{
