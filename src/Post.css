@@ -1,0 +1,17 @@
+.comments-container {
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	padding: 1em;
+	border-radius: 10px;
+}
+
+.name {
+	font-weight: bold;
+	margin-right: 1em;
+}
+
+.comment {
+	text-align: right;
+}

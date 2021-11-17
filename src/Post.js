@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Feed.css';
+import './Post.css';
 
 export default function Post({ postId }) {
 	const [comments, setComments] = useState([]);
@@ -29,28 +29,13 @@ export default function Post({ postId }) {
 			{comments.map(({ id, name, comment }) => (
 				<div
 					key={id}
+					className='comments-container'
 					style={{
-						width: '100%',
-						fontSize: '14px',
-						display: 'flex',
-						justifyContent: 'space-between',
-						padding: '1em',
-						borderRadius: '10px',
 						backgroundColor: id % 2 === 1 ? 'rgb(254,240,255)' : '',
 					}}
 				>
-					<div style={{ display: 'flex-inline', fontWeight: 'bold' }}>
-						{name}:
-					</div>
-					<div
-						style={{
-							display: 'flex-inline',
-							maxWidth: '280px',
-							textAlign: 'right',
-						}}
-					>
-						{comment}
-					</div>
+					<div className='name'>{name}:</div>
+					<div className='comment'>{comment}</div>
 				</div>
 			))}
 		</div>
