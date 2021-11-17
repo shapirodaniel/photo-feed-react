@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feed.css';
-import Post from './Post';
+import Comments from './Comments';
 import Likes from './Likes';
 
 function Feed() {
@@ -56,7 +56,7 @@ function Feed() {
 					<button onClick={() => toggleCommentVisibility(postId)}>
 						{visibleComments[postId] ? 'Hide Comments' : 'View Comments'}
 					</button>
-					{visibleComments[postId] && <Post postId={postId} />}
+					{visibleComments[postId] && <Comments postId={postId} />}
 				</div>
 			))}
 		</section>

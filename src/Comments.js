@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Post.css';
+import './Comments.css';
 
-export default function Post({ postId }) {
+export default function Comments({ postId }) {
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -25,17 +25,11 @@ export default function Post({ postId }) {
 	if (!postId) return null;
 
 	return (
-		<div style={{ width: '100%', lineHeight: '1.2em' }}>
+		<div className='comments-container'>
 			{comments.map(({ id, name, comment }) => (
-				<div
-					key={id}
-					className='comments-container'
-					style={{
-						backgroundColor: id % 2 === 1 ? 'rgb(254,240,255)' : '',
-					}}
-				>
-					<div className='name'>{name}:</div>
-					<div className='comment'>{comment}</div>
+				<div key={id} className='single-comment'>
+					<span className='name'>{name}:</span>
+					<span className='comment'>{comment}</span>
 				</div>
 			))}
 		</div>
