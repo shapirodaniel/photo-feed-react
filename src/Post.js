@@ -7,11 +7,15 @@ export default function Post({ postId }) {
 
 	useEffect(() => {
 		const getComments = async () => {
-			const { data: comments } = await axios.get(
-				'http://localhost:8080/comments'
-			);
-			if (postId) {
-				setComments(comments);
+			try {
+				const { data: comments } = await axios.get(
+					'http://localhost:8080/comments'
+				);
+				if (postId) {
+					setComments(comments);
+				}
+			} catch (ex) {
+				console.error(ex);
 			}
 		};
 

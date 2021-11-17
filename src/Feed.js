@@ -10,18 +10,22 @@ function Feed() {
 
 	useEffect(() => {
 		const getPosts = async () => {
-			const { data: posts } = await axios.get('http://localhost:8080/posts');
+			try {
+				const { data: posts } = await axios.get('http://localhost:8080/posts');
 
-			setPosts(posts);
+				setPosts(posts);
 
-			const idObj = posts
-				.map(({ postId }) => postId)
-				.reduce((ht, val) => {
-					ht[val] = false;
-					return ht;
-				}, {});
+				const idObj = posts
+					.map(({ postId }) => postId)
+					.reduce((ht, val) => {
+						ht[val] = false;
+						return ht;
+					}, {});
 
-			setVisibleComments(idObj);
+				setVisibleComments(idObj);
+			} catch (ex) {
+				console.error(ex);
+			}
 		};
 
 		getPosts();
@@ -33,7 +37,8 @@ function Feed() {
 				<div key={postId} className='container'>
 					<div className='author-and-date'>
 						<span>{date}</span>
-						<span>posted by: {author}</span>
+						<span>|</span>
+						<span class='author'>{author}</span>
 					</div>
 					<img src={src} alt='nature-and-water' />
 					<Likes likes={likes} />

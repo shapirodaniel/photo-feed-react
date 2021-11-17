@@ -24,13 +24,18 @@ section {
 
 .author-and-date {
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	justify-content: flex-start;
 	width: 100%;
 }
 
 .author-and-date > span {
-	margin: 1em;
+	font-size: 12px;
+	padding: 0 0.3em;
+}
+
+.author {
+	font-weight: bold;
 }
 
 img {
