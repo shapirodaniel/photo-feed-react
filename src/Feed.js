@@ -6,18 +6,22 @@ import Likes from './Likes';
 
 function Feed() {
 	const [posts, setPosts] = useState([]);
-	const [visiblePosts, setVisiblePosts] = useState({});
+	const [visibleComments, setVisibleComments] = useState({});
 
 	useEffect(() => {
 		const getPosts = async () => {
 			const { data: posts } = await axios.get('http://localhost:8080/posts');
+
 			setPosts(posts);
-			const postIds = posts.map(({ postId }) => postId);
-			const idObj = postIds.reduce((ht, val) => {
-				ht[val] = false;
-				return ht;
-			}, {});
-			setVisiblePosts(idObj);
+
+			const idObj = posts
+				.map(({ postId }) => postId)
+				.reduce((ht, val) => {
+					ht[val] = false;
+					return ht;
+				}, {});
+
+			setVisibleComments(idObj);
 		};
 
 		getPosts();
@@ -47,18 +51,18 @@ function Feed() {
 							cursor: 'pointer',
 						}}
 						onClick={() => {
-							if (visiblePosts[postId]) {
-								const clonedPosts = { ...visiblePosts };
+							if (visibleComments[postId]) {
+								const clonedPosts = { ...visibleComments };
 								delete clonedPosts[postId];
-								setVisiblePosts(clonedPosts);
+								setVisibleComments(clonedPosts);
 							} else {
-								setVisiblePosts({ ...visiblePosts, [postId]: true });
+								setVisibleComments({ ...visibleComments, [postId]: true });
 							}
 						}}
 					>
-						{visiblePosts[postId] ? 'Hide Comments' : 'View Comments'}
+						{visibleComments[postId] ? 'Hide Comments' : 'View Comments'}
 					</button>
-					{visiblePosts[postId] && <Post postId={postId} />}
+					{visibleComments[postId] && <Post postId={postId} />}
 				</div>
 			))}
 		</section>
