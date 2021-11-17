@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feed.css';
 
-export default function Post({ showId }) {
+export default function Post({ postId }) {
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -10,17 +10,17 @@ export default function Post({ showId }) {
 			const { data: comments } = await axios.get(
 				'http://localhost:8080/comments'
 			);
-			if (showId) {
+			if (postId) {
 				setComments(comments);
 			}
 		};
 
 		getComments();
-	}, [showId]);
+	}, [postId]);
 
-	if (!showId) return null;
+	if (!postId) return null;
 
-	const { imgComments } = comments.find(c => c.commentId === showId) || {
+	const { imgComments } = comments.find(c => c.commentId === postId) || {
 		commentId: 0,
 		imgComments: [],
 	};
@@ -43,7 +43,13 @@ export default function Post({ showId }) {
 					<div style={{ display: 'flex-inline', fontWeight: 'bold' }}>
 						{name}:
 					</div>
-					<div style={{ display: 'flex-inline', maxWidth: '280px' }}>
+					<div
+						style={{
+							display: 'flex-inline',
+							maxWidth: '280px',
+							textAlign: 'right',
+						}}
+					>
 						{comment}
 					</div>
 				</div>

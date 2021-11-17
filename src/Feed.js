@@ -58,7 +58,7 @@ function Feed() {
 					>
 						{visiblePosts[postId] ? 'Hide Comments' : 'View Comments'}
 					</button>
-					{visiblePosts[postId] && <Post showId={postId} />}
+					{visiblePosts[postId] && <Post postId={postId} />}
 				</div>
 			))}
 		</section>
