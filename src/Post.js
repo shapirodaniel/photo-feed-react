@@ -35,6 +35,9 @@ export default function Post({ showId }) {
 						fontSize: '14px',
 						display: 'flex',
 						justifyContent: 'space-between',
+						padding: '1em',
+						borderRadius: '10px',
+						backgroundColor: id % 2 === 1 ? 'rgb(254,240,255)' : '',
 					}}
 				>
 					<div style={{ display: 'flex-inline', fontWeight: 'bold' }}>

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Likes.css';
+import React from 'react';
 
 export default function Likes({ likes }) {
 	return (
