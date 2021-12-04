@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 export default function Profile() {
   const [profile, setProfile] = useState();
-  const { id } = useParams("id");
+  const { id } = useParams();
 
   useEffect(() => {
     const getProfile = async () => {
