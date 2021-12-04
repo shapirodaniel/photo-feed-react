@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./Nav.css";
 
 const navLinks = [
   { id: 1, name: "Home", to: "/" },
@@ -17,16 +18,16 @@ export default function Nav() {
       }}
     >
       {navLinks.map(({ id, name, to }) => (
-        <Link to={to}>
+        <NavLink exact activeClassName="active" to={to}>
           <div
             key={id}
             style={{
-              marginRight: "1em",
+              margin: "1em",
             }}
           >
             {name}
           </div>
-        </Link>
+        </NavLink>
       ))}
     </section>
   );
