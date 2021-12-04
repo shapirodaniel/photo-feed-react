@@ -27,10 +27,10 @@ export default function Profile() {
     <section className="profileContainer">
       <h2>Profile</h2>
       <img src={`/assets/${avatar}`} alt={"avatar"} />
-      <div className="info">
-        <div>Name: {name}</div>
-        <div>About: {about}</div>
-      </div>
+      <span>{name}</span>
+      <span>
+        <em>{about}</em>
+      </span>
     </section>
   );
 }
