@@ -7,3 +7,7 @@ This photo feed demo was bootstrapped with <code>npx create-react-app</code> and
 <code>npm i</code> to install dependencies<br/>
 <code>npm run app</code> to launch the React app on port 3000<br/>
 <code>npm run server</code> to start json-server with API routes available at <code>localhost:8080/posts</code> and <code>localhost:8080/comments</code>
+
+## Now with React Router!
+
+<code>git checkout router</code> will take you to a React Router v5 implementation that adds a unique profile view for each user as well as a <code>Nav</code> component and <code>NavLink</code> active styling!
