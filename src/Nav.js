@@ -9,20 +9,13 @@ const navLinks = [
 
 export default function Nav() {
   return (
-    <section
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        padding: "1em 0",
-      }}
-    >
+    <section className="navContainer">
       {navLinks.map(({ id, name, to }) => (
         <NavLink exact activeClassName="active" to={to}>
           <div
             key={id}
             style={{
-              margin: "1em",
+              paddingRight: "1.5em",
             }}
           >
             {name}
