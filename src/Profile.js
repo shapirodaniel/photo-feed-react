@@ -1,18 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import "./Profile.css";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
+  const [profile, setProfile] = useState();
+  const { id } = useParams("id");
+
   useEffect(() => {
-    // fetch profile from json-server
-    // use id from props??
-  });
+    const getProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/profiles?id=${id}`);
+        const [profile] = await response.json();
+
+        setProfile(profile);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getProfile();
+  }, [id]);
+
+  const { avatar, name, about } = profile || {};
 
   return (
     <section className="profileContainer">
       <h2>Profile</h2>
-      <img src={"avatar-link-goes-here"} alt={"avatar"} />
+      <img src={`/assets/${avatar}`} alt={"avatar"} />
       <div className="info">
-        <div>Name: {"name-goes-here"}</div>
-        <div>About: {"about-goes-here"}</div>
+        <div>Name: {name}</div>
+        <div>About: {about}</div>
       </div>
     </section>
   );

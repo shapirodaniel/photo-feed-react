@@ -6,8 +6,8 @@
 }
 
 .profileContainer img {
-  height: 2em;
-  width: auto;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -15,5 +15,11 @@
 .info {
   display: flex;
   flex-direction: column;
-  height: min-content;
+  height: 100px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.info * {
+  margin: 1em;
 }

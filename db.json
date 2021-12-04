@@ -81,21 +81,21 @@
   "profiles": [
     {
       "id": 1,
+      "name": "oceanbro",
+      "avatar": "avatar-3.png",
+      "about": "bro im all about the ocean"
+    },
+    {
+      "id": 2,
       "name": "poseidon's bff",
       "avatar": "avatar-1.png",
       "about": "gnarly waves = life"
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "giantSquidCalamari",
       "avatar": "avatar-2.png",
       "about": "never met a crustacean i didn't love :D"
-    },
-    {
-      "id": 3,
-      "name": "oceanbro",
-      "avatar": "avatar-3.png",
-      "about": "bro im all about the ocean"
     }
   ]
 }
