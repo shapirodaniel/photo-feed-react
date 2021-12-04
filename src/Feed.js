@@ -44,24 +44,26 @@ function Feed() {
 
   return (
     <section>
-      {posts.map(({ postId, date, author, src, altText, content, likes }) => (
-        <div key={postId} className="post-container">
-          <div className="author-and-date">
-            <span>{date}</span>
-            <span>|</span>
-            <Link to={`/profiles/${postId}`}>
-              <span className="author">{author}</span>
-            </Link>
+      {posts.map(
+        ({ postId, date, author, authorId, src, altText, content, likes }) => (
+          <div key={postId} className="post-container">
+            <div className="author-and-date">
+              <span>{date}</span>
+              <span>|</span>
+              <Link to={`/profiles/${authorId}`}>
+                <span className="author">{author}</span>
+              </Link>
+            </div>
+            <img src={src} alt={altText} />
+            <Likes likes={likes} />
+            <div>{content}</div>
+            <button onClick={() => toggleCommentVisibility(postId)}>
+              {visibleComments[postId] ? "Hide Comments" : "View Comments"}
+            </button>
+            {visibleComments[postId] && <Comments postId={postId} />}
           </div>
-          <img src={src} alt={altText} />
-          <Likes likes={likes} />
-          <div>{content}</div>
-          <button onClick={() => toggleCommentVisibility(postId)}>
-            {visibleComments[postId] ? "Hide Comments" : "View Comments"}
-          </button>
-          {visibleComments[postId] && <Comments postId={postId} />}
-        </div>
-      ))}
+        )
+      )}
     </section>
   );
 }
