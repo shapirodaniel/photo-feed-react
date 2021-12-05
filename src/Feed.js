@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./Feed.css";
 import Comments from "./Comments";
 import Likes from "./Likes";
@@ -12,7 +11,8 @@ function Feed() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const { data: posts } = await axios.get("http://localhost:8080/posts");
+        const response = await fetch("http://localhost:8080/posts");
+        const posts = await response.json();
 
         setPosts(posts);
 
@@ -33,25 +33,22 @@ function Feed() {
   }, []);
 
   function toggleCommentVisibility(postId) {
-    if (visibleComments[postId]) {
-      const clonedPosts = { ...visibleComments };
-      delete clonedPosts[postId];
-      setVisibleComments(clonedPosts);
-    } else {
-      setVisibleComments({ ...visibleComments, [postId]: true });
-    }
+    setVisibleComments({
+      ...visibleComments,
+      [postId]: !visibleComments[postId],
+    });
   }
 
   return (
     <section>
       {posts.map(
         ({ postId, date, author, authorId, src, altText, content, likes }) => (
-          <div key={postId} className="post-container">
-            <div className="author-and-date">
+          <div key={postId} className="postContainer">
+            <div className="authorAndDate">
               <span>{date}</span>
               <span>|</span>
-              <Link to={`/profiles/${authorId}`}>
-                <span className="author">{author}</span>
+              <Link className="author" to={`/profiles/${authorId}`}>
+                {author}
               </Link>
             </div>
             <img src={src} alt={altText} />

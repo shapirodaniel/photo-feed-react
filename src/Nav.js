@@ -11,14 +11,16 @@ export default function Nav() {
   return (
     <section className="navContainer">
       {navLinks.map(({ name, to }, idx) => (
-        <NavLink key={idx} exact activeClassName="active" to={to}>
-          <div
-            style={{
-              paddingRight: "1.5em",
-            }}
-          >
-            {name}
-          </div>
+        <NavLink
+          key={idx}
+          exact
+          activeClassName="active"
+          to={to}
+          style={{
+            paddingRight: "1.5em",
+          }}
+        >
+          {name}
         </NavLink>
       ))}
     </section>

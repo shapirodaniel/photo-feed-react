@@ -13,8 +13,8 @@ export default function Profile() {
         const [profile] = await response.json();
 
         setProfile(profile);
-      } catch (err) {
-        console.error(err);
+      } catch (ex) {
+        console.error(ex);
       }
     };
 
