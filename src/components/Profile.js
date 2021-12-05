@@ -1,6 +1,6 @@
 import React from "react";
+import { useProfile } from "../custom-hooks";
 import "../component-css/Profile.css";
-import { useProfile } from "../custom-hooks/useProfile";
 
 export default function Profile() {
   const { avatar, name, about } = useProfile();

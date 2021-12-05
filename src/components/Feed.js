@@ -1,43 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "../component-css/Feed.css";
-import Comments from "./Comments";
-import Likes from "./Likes";
+import React from "react";
+import { usePosts } from "../custom-hooks";
+import { Comments, Likes } from "./";
 import { Link } from "react-router-dom";
+import "../component-css/Feed.css";
 
 function Feed() {
-  const [posts, setPosts] = useState([]);
-  const [visibleComments, setVisibleComments] = useState({});
-
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/posts");
-        const posts = await response.json();
-
-        setPosts(posts);
-
-        const idObj = posts
-          .map(({ postId }) => postId)
-          .reduce((ht, val) => {
-            ht[val] = false;
-            return ht;
-          }, {});
-
-        setVisibleComments(idObj);
-      } catch (ex) {
-        console.error(ex);
-      }
-    };
-
-    getPosts();
-  }, []);
-
-  function toggleCommentVisibility(postId) {
-    setVisibleComments({
-      ...visibleComments,
-      [postId]: !visibleComments[postId],
-    });
-  }
+  const { posts, visibleComments, toggleCommentVisibility } = usePosts();
 
   return (
     <section>

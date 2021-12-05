@@ -1,27 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useComments } from "../custom-hooks";
 import "../component-css/Comments.css";
 
 export default function Comments({ postId }) {
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    const getComments = async () => {
-      try {
-        if (postId) {
-          const response = await fetch(
-            `http://localhost:8080/comments?commentId=${postId}`
-          );
-          const [commentObj] = await response.json();
-
-          setComments(commentObj.imgComments);
-        }
-      } catch (ex) {
-        console.error(ex);
-      }
-    };
-
-    getComments();
-  }, [postId]);
+  const { comments } = useComments(postId);
 
   return (
     <div className="commentsContainer">
