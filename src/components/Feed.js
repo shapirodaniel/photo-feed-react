@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Feed.css";
+import "../component-css/Feed.css";
 import Comments from "./Comments";
 import Likes from "./Likes";
 import { Link } from "react-router-dom";

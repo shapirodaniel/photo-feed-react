@@ -1,5 +1,5 @@
 import React from "react";
-import "./Likes.css";
+import "../component-css/Likes.css";
 
 export default function Likes({ likes }) {
   return (

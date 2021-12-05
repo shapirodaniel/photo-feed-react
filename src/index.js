@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import Feed from "./Feed";
-import Profile from "./Profile";
-import Nav from "./Nav";
-import Home from "./Home";
+import { Feed, Profile, Nav, Home } from "./components";
 import "./index.css";
 
 ReactDOM.render(

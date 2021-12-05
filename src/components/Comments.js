@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Comments.css";
+import "../component-css/Comments.css";
 
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([]);
