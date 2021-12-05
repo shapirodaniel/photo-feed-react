@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../component-css/Profile.css";
-import { useParams } from "react-router-dom";
+import { useProfile } from "../custom-hooks/useProfile";
 
 export default function Profile() {
-  const [profile, setProfile] = useState();
-  const { id } = useParams();
-
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/profiles?id=${id}`);
-        const [profile] = await response.json();
-
-        setProfile(profile);
-      } catch (ex) {
-        console.error(ex);
-      }
-    };
-
-    getProfile();
-  }, [id]);
-
-  const { avatar, name, about } = profile || {};
+  const { avatar, name, about } = useProfile();
 
   return (
     <section className="profileContainer">
